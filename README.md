@@ -18,8 +18,26 @@ relaxation, and thermal diffusion in one transient, multi-body analysis.
 Learned surrogates promise a faster alternative, but existing forming surrogates
 target a single field, a quasi-static setting, or a thermal-only response; none
 reproduces the complete multi-stage, multi-physics forming trajectory. PressNet++
-closes this gap using the [PressNet dataset](https://github.com/ank-anthony/PressNet)
-of 150 transient pressed-forming trajectories.
+closes this gap using the PressNet dataset of 150 transient pressed-forming
+trajectories (see the paper citation below for the canonical reference).
+
+### Contributions
+
+- We propose PressNet++, a **staged multi-model surrogate architecture** that
+  partitions the forming trajectory into specialized networks for the pressing,
+  dwell, and release regimes, together with a parallel network for thermal
+  diffusion, and show that it outperforms a monolithic single-model baseline.
+- We provide a **controlled benchmark of five architectures** spanning two
+  families — graph neural networks and a transformer-based PDE solver — on the
+  same transient, multi-physics, large-deformation task.
+- We evaluate **generalization and stability** through in-distribution,
+  parametric-extrapolation, and unseen-shape splits, and through a one-step
+  versus rolled-out comparison that isolates error accumulation. Global-attention
+  models are more accurate on geometries seen during training, whereas local
+  mesh-based message passing generalizes better to unseen geometries.
+- We report **architecture-specific hyperparameter ablations** and a
+  **mesh-resolution study** that includes cross-resolution transfer between
+  coarse and fine meshes.
 
 ### Architecture
 
@@ -41,6 +59,16 @@ Key findings:
   stability issues and potential improvement through stabilization of autoregressive
   inference.
 - Stress prediction has a much higher error than displacement in all scenarios.
+
+## Results
+
+### Training loss
+
+![Training loss](training.png)
+
+### Inference rollout
+
+![Inference rollout](inference.png)
 
 ## Repository layout
 
