@@ -77,6 +77,11 @@ conda env create -f environment.yml
 conda activate graph_env
 ```
 
+> Training and inference run on **GPU** by default (torch is CUDA-built and the
+> `furthest_point_sampling` extension used by `dilated_dgcnn` is CUDA-only).
+> All device selection is automatic via
+> `torch.device("cuda" if torch.cuda.is_available() else "cpu")`.
+
 Each architecture is trained **three times** — once per stage (Press / Dwell /
 Release) — then stitched together at inference. Replace `--model` with the
 architecture you want.
@@ -105,7 +110,10 @@ checkpoints (Press / Dwell / Release). `core_model` can be a single string
 
 ## Verified
 
-The package was smoke-tested end-to-end in `graph_env`:
+The package was smoke-tested end-to-end. All device logic uses
+`torch.device("cuda" if torch.cuda.is_available() else "cpu")`, so the code
+runs on GPU when one is present (torch is CUDA-built and the
+`furthest_point_sampling` extension is CUDA-capable).
 
 - `import pressnetpp.train, pressnetpp.inference` ✓
 - `TrajectoryDataset` loads the real coarse dataset (13,694 samples, 887 nodes,
@@ -113,9 +121,8 @@ The package was smoke-tested end-to-end in `graph_env`:
 - One real training step (forward + backward + optimizer step) on real data
   passes for **encode_process_decode, gcn, transolver, regDGCNN_seg, and
   regpointnet_seg** ✓
-- `dilated_dgcnn` requires the compiled CUDA `furthest_point_sampling`
-  extension and needs a GPU (the extension's CPU fallback is not implemented);
-  it runs on GPU in the same code path.
+- `dilated_dgcnn` requires a GPU — its `furthest_point_sampling` extension has
+  no CPU fallback; it runs on GPU through the same code path.
 
 ## Repository layout
 
