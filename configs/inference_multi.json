@@ -1,0 +1,14 @@
+{
+  "checkpoint_path_1": null,
+  "checkpoint_path_2": null,
+  "checkpoint_path_3": null,
+  "val_file": "/home/sushil/PressNet/datasets/data/coarse/coarse_1500_train_val.h5",
+  "rollout_dir": "/home/sushil/PressNet/Pressnet++/output/inference",
+  "core_model": ["dilated_dgcnn", "dilated_dgcnn", "dilated_dgcnn"],
+  "continuous": true,
+  "evaluate": false,
+  "animation": false,
+  "animation_html": false,
+  "split": "val",
+  "Remark": "Pressnet++ 3-stage inference. Set checkpoint_path_1/2/3 to the trained stage checkpoints (Press/Dwell/Release). core_model can be a str (same arch all stages), a list of 3, or {stage_1,stage_2,stage_3}."
+}

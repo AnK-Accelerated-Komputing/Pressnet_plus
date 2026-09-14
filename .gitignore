@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+
+# Training / inference outputs
+output/
+*.pkl
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store

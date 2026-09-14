@@ -1,0 +1,24 @@
+Copyright (c) Accelerated Computing Pvt. Ltd.
+
+All rights reserved.
+
+This software and accompanying documentation are proprietary and are provided
+under a restricted license. Unauthorized use, reproduction, distribution, or
+modification of this software, in whole or in part, is strictly prohibited
+without the prior written consent of Accelerated Computing Pvt. Ltd.
+
+Permission is granted to use the software for non-commercial, academic research
+purposes only, subject to the following conditions:
+
+  1. The above copyright notice and this permission notice shall be included in
+     all copies or substantial portions of the software.
+  2. Any publication, presentation, or report that uses results obtained from
+     this software shall cite the PressNet/PressNet++ paper (see CITATION.bib).
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
