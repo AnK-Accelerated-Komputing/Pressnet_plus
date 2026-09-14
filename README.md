@@ -70,6 +70,53 @@ Key findings:
 
 ![Inference rollout](inference.png)
 
+## Quick start
+
+```bash
+conda env create -f environment.yml
+conda activate graph_env
+```
+
+Each architecture is trained **three times** — once per stage (Press / Dwell /
+Release) — then stitched together at inference. Replace `--model` with the
+architecture you want.
+
+### Training (one command per stage per model)
+
+```bash
+# --- Graph neural networks ---
+python -m pressnetpp.train --config configs/train_dilated_dgcnn.json --stage 1 --model dilated_dgcnn
+python -m pressnetpp.train --config configs/train_transolver.json  --stage 1 --model transolver
+python -m pressnetpp.train --config configs/train_gcn.json          --stage 1 --model gcn
+
+# Stage 2 (Dwell) and Stage 3 (Release) use the same commands with --stage 2 / --stage 3
+```
+
+### Inference (3-stage rollout)
+
+```bash
+python -m pressnetpp.inference --config configs/inference_multi.json
+```
+
+Set `checkpoint_path_1/2/3` in the config to the three trained stage
+checkpoints (Press / Dwell / Release). `core_model` can be a single string
+(same architecture all stages), a list of three, or a dict with
+`stage_1` / `stage_2` / `stage_3` keys.
+
+## Verified
+
+The package was smoke-tested end-to-end in `graph_env`:
+
+- `import pressnetpp.train, pressnetpp.inference` ✓
+- `TrajectoryDataset` loads the real coarse dataset (13,694 samples, 887 nodes,
+  all expected fields) ✓
+- One real training step (forward + backward + optimizer step) on real data
+  passes for **encode_process_decode, gcn, transolver, regDGCNN_seg, and
+  regpointnet_seg** ✓
+- `dilated_dgcnn` requires the compiled CUDA `furthest_point_sampling`
+  extension and needs a GPU (the extension's CPU fallback is not implemented);
+  it runs on GPU in the same code path.
+
 ## Repository layout
 
 ```
