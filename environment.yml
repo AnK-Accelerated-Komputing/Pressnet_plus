@@ -1,4 +1,4 @@
-name: graph_env
+name: pressnetpp
 channels:
   - pytorch
   - nvidia

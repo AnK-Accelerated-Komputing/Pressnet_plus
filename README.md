@@ -74,7 +74,7 @@ Key findings:
 
 ```bash
 conda env create -f environment.yml
-conda activate graph_env
+conda activate pressnetpp
 ```
 
 > Training and inference run on **GPU** by default (torch is CUDA-built and the
@@ -138,22 +138,6 @@ Pressnet++/
     inference.py                 # run the full 3-stage rollout
     models/                      # 5 benchmarked architectures + wrapper
     utilities/                   # dataset loader, eval, plot, anim, paraview
-```
-
-## Quick start
-
-```bash
-conda env create -f environment.yml
-conda activate graph_env
-
-# 1. Train stage 1 (Press) with Dilated-DGCNN
-python -m pressnetpp.train --config configs/train_dilated_dgcnn.json \
-    --stage 1 --model dilated_dgcnn
-
-# 2. Repeat for stage 2 (Dwell) and stage 3 (Release), optionally changing --model
-
-# 3. Run the full 3-stage rollout
-python -m pressnetpp.inference --config configs/inference_multi.json
 ```
 
 See `configs/*.json` for full hyperparameter sets; paths are user-configurable.
